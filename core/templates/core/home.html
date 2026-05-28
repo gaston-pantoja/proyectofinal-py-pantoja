@@ -3,26 +3,37 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-    <h1>Bienvenido a la Plataforma de Vanguardia Industrial</h1>
-    <p>Esta solución fusiona eficiencia de software con un compromiso firme hacia el desarrollo sostenible y la optimización operativa.</p>
-    
-    <hr style="border-color: #333; margin: 2rem 0;">
-
-    <h2>Iniciativas y Proyectos Activos</h2>
-    
-    {% if proyectos %}
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-            {% for proyecto in proyectos %}
-                <div style="background-color: #1e1e1e; padding: 1.5rem; border: 1px solid #333; border-radius: 4px;">
-                    <h3 style="color: #00ffcc; margin-top: 0;">{{ proyecto.titulo }}</h3>
-                    <p style="color: #ccc; font-size: 0.95rem;">{{ proyecto.descripcion }}</p>
-                    <small style="color: #777; display: block; margin-top: 1rem;">
-                        <strong>Tecnologías:</strong> {{ proyecto.tecnologias }}
-                    </small>
-                </div>
-            {% endfor %}
+    <div style="text-align: center; padding: 3rem 1rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Bienvenido a la Plataforma de Vanguardia Industrial</h1>
+        <p style="color: #ccc; max-width: 700px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem;">
+            Esta solución de software representa la convergencia entre la ingeniería de código de alta precisión y la optimización de procesos. Diseñada bajo una arquitectura robusta, provee un entorno centralizado para la gestión de contenidos técnicos, testing operativo y documentación modular.
+        </p>
+        
+        <div style="margin-top: 3rem; margin-bottom: 4rem;">
+            <a href="{% url 'pages_index' %}" style="background-color: #00ffcc; color: #121212; padding: 0.8rem 1.8rem; text-decoration: none; font-weight: bold; border-radius: 4px; margin-right: 1rem;">
+                Explorar Blogs
+            </a>
+            <a href="{% url 'about' %}" style="border: 1px solid #333; color: #fff; padding: 0.8rem 1.8rem; text-decoration: none; border-radius: 4px;">
+                Conocer al Desarrollador
+            </a>
         </div>
-    {% else %}
-        <p style="color: #777; italic;">No hay proyectos registrados en la plataforma actualmente.</p>
-    {% endif %}
+
+        <hr style="border: 0; border-top: 1px solid #222; margin: 3rem 0;">
+
+        <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: #fff;">Áreas de Enfoque Tecnológico</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; text-align: left;">
+            <div style="background-color: #1a1a1a; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #00ffcc;">
+                <h3 style="color: #00ffcc; margin-top: 0;">Garantía de Calidad (QA)</h3>
+                <p style="color: #aaa; font-size: 0.95rem; line-height: 1.5;">Ciclos de prueba rigurosos e identificación predictiva de anomalías para asegurar lanzamientos sin fricciones.</p>
+            </div>
+            <div style="background-color: #1a1a1a; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #00ffcc;">
+                <h3 style="color: #00ffcc; margin-top: 0;">Arquitectura Eficiente</h3>
+                <p style="color: #aaa; font-size: 0.95rem; line-height: 1.5;">Estructuras de backend optimizadas en Django para un procesamiento de datos ágil y de baja latencia.</p>
+            </div>
+            <div style="background-color: #1a1a1a; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #00ffcc;">
+                <h3 style="color: #00ffcc; margin-top: 0;">Innovación Sostenible</h3>
+                <p style="color: #aaa; font-size: 0.95rem; line-height: 1.5;">Diseño de interfaces orientadas a la claridad informativa, minimizando la redundancia operativa.</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

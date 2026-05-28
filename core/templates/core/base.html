@@ -12,8 +12,17 @@
 <body>
 
     <nav>
-        <a href="{% url 'core:home' %}">Inicio</a>
-        <a href="{% url 'core:about' %}">Acerca de mí</a>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'about' %}">Acerca de mí</a>
+        <a href="{% url 'pages_index' %}">Blogs</a>
+        
+        {% if user.is_authenticated %}
+            <span style="color: #00ffcc; float: right; font-size: 0.9rem;">
+                Conectado como: <strong>{{ user.username }}</strong>
+            </span>
+        {% else %}
+            <a href="{% url 'admin:index' %}" style="float: right; color: #777;">Iniciar Sesión</a>
+        {% endif %}
     </nav>
 
     <div class="container">
