@@ -1,37 +1,47 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Páginas de Blog{% endblock %}
+{% block title %}Blogs{% endblock %}
 
 {% block content %}
-    <h1>Sección de Blogs</h1>
-    <p style="color: #ccc;">Explora las últimas publicaciones sobre tecnología, QA y optimización de software.</p>
-    
-    <hr style="border-color: #333; margin: 2rem 0;">
+<div style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+    <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Sección de Blogs</h1>
+    <p style="color: #888; margin-bottom: 2rem;">Explora las últimas publicaciones sobre tecnología, QA y optimización de software.</p>
 
-    {% if paginas %}
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-            {% for pagina in paginas %}
-                <div style="background-color: #1e1e1e; padding: 1.5rem; border: 1px solid #333; border-radius: 4px; position: relative;">
-                    <h3 style="color: #00ffcc; margin-top: 0;">{{ pagina.titulo }}</h3>
-                    
-                    <p style="color: #ccc; font-size: 0.95rem;">{{ pagina.descripcion|truncatewords:15 }}</p>
-                    
-                    <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                        <a href="{% url 'page_detail' pagina.id %}" style="color: #0077ff; text-decoration: none; font-weight: bold;">Leer más →</a>
-                        
-                        {% if user.is_authenticated %}
-                            <div>
-                                <a href="{% url 'admin:core_proyecto_change' pagina.id %}" style="color: #ffaa00; font-size: 0.85rem; margin-right: 0.5rem; text-decoration: none;">Editar</a>
-                                <a href="{% url 'admin:core_proyecto_delete' pagina.id %}" style="color: #ff3333; font-size: 0.85rem; text-decoration: none;">Borrar</a>
-                            </div>
-                        {% endif %}
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        {% for pagina in paginas %}
+            <div style="background-color: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 1.5rem; position: relative; overflow: hidden;">
+                
+                {% if pagina.imagen %}
+                    <div style="margin-bottom: 1rem; max-height: 250px; overflow: hidden; border-radius: 4px;">
+                        <img src="{{ pagina.imagen.url }}" alt="{{ pagina.titulo }}" style="width: 100%; height: auto; object-fit: cover;">
                     </div>
+                {% endif %}
+
+                <h2 style="color: #00ffcc; margin-top: 0; font-size: 1.4rem;">{{ pagina.titulo }}</h2>
+                
+                <div style="color: #ccc; line-height: 1.6; margin-bottom: 1rem;">
+                    {{ pagina.descripcion|truncatewords:30|safe }}
                 </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div style="text-align: center; padding: 3rem; background-color: #1e1e1e; border: 1px solid #333; border-radius: 4px;">
-            <p style="color: #777; font-size: 1.2rem; font-style: italic; margin: 0;">No hay páginas aún.</p>
-        </div>
-    {% endif %}
+                
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 1.5rem;">
+                    <strong>Tecnologías:</strong> {{ pagina.tecnologias }} | 
+                    <strong>Publicado:</strong> {{ pagina.fecha_creacion|date:"d/m/Y H:i" }}
+                </p>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{% url 'page_detail' pagina.id %}" style="color: #ff9900; text-decoration: none; font-weight: bold; font-size: 0.95rem;">Leer más →</a>
+                    
+                    {% if user.is_authenticated %}
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.85rem;">
+                            <a href="#" style="color: #ffcc00; text-decoration: none;">Editar</a>
+                            <a href="#" style="color: #ff3333; text-decoration: none;">Borrar</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p style="color: #777; font-style: italic;">No hay publicaciones registradas en la plataforma actualmente.</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

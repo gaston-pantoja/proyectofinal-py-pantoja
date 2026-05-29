@@ -15,13 +15,31 @@
         <a href="{% url 'home' %}">Inicio</a>
         <a href="{% url 'about' %}">Acerca de mí</a>
         <a href="{% url 'pages_index' %}">Blogs</a>
-        
+    
         {% if user.is_authenticated %}
-            <span style="color: #00ffcc; float: right; font-size: 0.9rem;">
-                Conectado como: <strong>{{ user.username }}</strong>
-            </span>
+            <a href="/admin/core/proyecto/add/" style="background-color: #00ffcc; color: #121212; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: bold; margin-left: 1rem; font-size: 0.85rem;">
+            + Crear Blog
+            </a>
+
+            <div style="float: right; display: flex; gap: 1.5rem; align-items: center;">
+                <a href="{% url 'bandeja' %}" style="color: #ff9900; font-size: 0.9rem; text-decoration: none;">
+                    Mensajes 
+                </a>    
+            <a href="{% url 'perfil' %}" style="color: #00ffcc; font-size: 0.9rem; text-decoration: none;"> <span>⚙️</span>
+                Configuración 
+            </a>
+            <form action="{% url 'logout' %}" method="POST" style="display: inline; margin: 0;      padding: 0;">
+             {% csrf_token %}
+                <button type="submit" style="background: none; border: none; color: #ff3333; font-size: 0.9rem; font-family: inherit; cursor: pointer; padding: 0; text-decoration: none; font-weight: normal;">
+                Cerrar Sesión
+                </button>
+            </form>
+            </div>
         {% else %}
-            <a href="{% url 'admin:index' %}" style="float: right; color: #777;">Iniciar Sesión</a>
+            <div style="float: right; display: flex; gap: 1.5rem;">
+                <a href="{% url 'login' %}" style="color: #00ffcc; text-decoration: none;">Iniciar Sesión</a>
+                <a href="{% url 'registro' %}" style="color: #777; text-decoration: none;">Registrarse</a>
+            </div>
         {% endif %}
     </nav>
 

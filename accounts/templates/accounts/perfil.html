@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<style>
+    form.perfil-dark-form p input[type="text"], 
+    form.perfil-dark-form p input[type="email"], 
+    form.perfil-dark-form p textarea,
+    form.perfil-dark-form p select {
+        width: 100%;
+        background-color: #222;
+        border: 1px solid #333;
+        color: #ffffff;
+        padding: 0.6rem;
+        border-radius: 4px;
+        margin-top: 0.3rem;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+    }
+
+    form.perfil-dark-form p input:focus, 
+    form.perfil-dark-form p textarea:focus {
+        border-color: #00ffcc;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
+    }
+
+    form.perfil-dark-form p input[type="file"]::file-selector-button {
+    background-color: #333;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-right: 0.5rem;
+}
+
+    /* Efecto Hover para el botón del archivo */
+    form.perfil-dark-form p input[type="file"]::file-selector-button:hover {
+    background-color: #444;
+    border-color: #00ffcc;
+    color: #00ffcc;
+}
+
+    form.perfil-dark-form p input[type="file"] {
+        color: #00ffcc;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+   
+    form.perfil-dark-form p .helptext {
+        color: #888;
+        font-size: 0.8rem;
+        display: block;
+        margin-top: -0.8rem;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div style="max-width: 600px; margin: 3rem auto; padding: 2rem; background-color: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+    <h1 style="color: #00ffcc; margin-top: 0; font-size: 2rem; text-align: center; margin-bottom: 2rem;">Configuración de Perfil</h1>
+    
+    <div style="text-align: center; margin-bottom: 2rem;">
+        {% if perfil.avatar %}
+            <img src="{{ perfil.avatar.url }}" alt="Avatar" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #00ffcc; display: block; margin: 0 auto;">
+        {% else %}
+            <div style="width: 120px; height: 120px; border-radius: 50%; background-color: #333; color: #777; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 0.9rem; border: 3px dashed #555;">
+                Sin Avatar
+            </div>
+        {% endif %}
+        <p style="color: #888; font-size: 0.9rem; margin-top: 0.5rem;">@{{ user.username }}</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="perfil-dark-form" style="display: flex; flex-direction: column; gap: 1.2rem;">
+        {% csrf_token %}
+        
+        <div>
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 1rem; font-size: 1.1rem;">Datos Personales</h3>
+            {{ user_form.as_p }}
+        </div>
+        
+        <div>
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 1rem; font-size: 1.1rem;">Información Complementaria</h3>
+            {{ perfil_form.as_p }}
+        </div>
+
+        <button type="submit" style="background-color: #00ffcc; color: #121212; padding: 0.8rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 1rem;">
+            Guardar Cambios
+        </button>
+    </form>
+
+    <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+    <div style="text-align: center;">
+        <a href="{% url 'cambiar_password' %}" style="color: #ff9900; text-decoration: none; font-size: 0.95rem; font-weight: bold;">
+            ¿Deseas cambiar tu contraseña? Ingresa aquí →
+        </a>
+    </div>
+</div>
+{% endblock %}
