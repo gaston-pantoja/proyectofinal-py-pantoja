@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="height: 100%; margin: 0; padding: 0;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="{% static 'core/styles.css' %}">
 </head>
-<body>
+<body style="margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; background-color: #121212; color: #fff;">
 
     <nav>
         <a href="{% url 'home' %}">Inicio</a>
@@ -25,15 +25,16 @@
                 <a href="{% url 'bandeja' %}" style="color: #ff9900; font-size: 0.9rem; text-decoration: none;">
                     Mensajes 
                 </a>    
-            <a href="{% url 'perfil' %}" style="color: #00ffcc; font-size: 0.9rem; text-decoration: none;"> <span>⚙️</span>
-                Configuración 
-            </a>
-            <form action="{% url 'logout' %}" method="POST" style="display: inline; margin: 0;      padding: 0;">
-             {% csrf_token %}
-                <button type="submit" style="background: none; border: none; color: #ff3333; font-size: 0.9rem; font-family: inherit; cursor: pointer; padding: 0; text-decoration: none; font-weight: normal;">
-                Cerrar Sesión
-                </button>
-            </form>
+                <a href="{% url 'perfil' %}" style="color: #00ffcc; font-size: 0.9rem; text-decoration: none;"> <span>⚙️</span>
+                    Configuración 
+                </a>
+
+                <form action="{% url 'logout' %}" method="POST" style="display: inline; margin: 0; padding: 0;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: #ff3333; font-size: 0.9rem; font-family: inherit; cursor: pointer; padding: 0; text-decoration: none; font-weight: normal;">
+                    Cerrar Sesión
+                    </button>
+                </form>
             </div>
         {% else %}
             <div style="float: right; display: flex; gap: 1.5rem;">
@@ -43,13 +44,17 @@
         {% endif %}
     </nav>
 
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <main style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2026 Innovación y Sostenibilidad Industrial. Todos los derechos reservados.</p>
+    <footer style="width: 100%; background-color: #1a1a1a; border-top: 1px solid #333; padding: 1.5rem 0; text-align: center;">
+        <p style="margin: 0; color: #888; font-size: 0.85rem;">
+            © 2026 Innovación y Sostenibilidad Industrial. Todos los derechos reservados.
+        </p>
     </footer>
 
 </body>
