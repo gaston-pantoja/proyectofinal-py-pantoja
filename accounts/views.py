@@ -17,10 +17,10 @@ class RegistroUsuarioView(CreateView):
 
 def form_valid(self, form):
         user = form.save()
-        # El mensaje de éxito que viaja en la sesión
+        
         messages.success(self.request, "Cuenta creada con éxito. Ya podés iniciar sesión.")
         
-        # CORRECCIÓN: Forzamos la redirección inmediata a la URL de éxito
+       
         return redirect(self.success_url)
 
 
@@ -62,9 +62,9 @@ def perfil_view(request):
     }
     return render(request, 'accounts/perfil.html', context)
 
-from django.contrib.auth import logout # Asegurate de que esta importación esté arriba
+from django.contrib.auth import logout 
 
-# Vista de deslogueo directo y seguro
+
 def logout_usuario_view(request):
     if request.method == 'POST':
         logout(request)
