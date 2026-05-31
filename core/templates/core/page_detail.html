@@ -21,5 +21,17 @@
     <div style="color: #ddd; line-height: 1.7; font-size: 1.1rem; space-bottom: 2rem;">
         {{ pagina.descripcion|safe }}
     </div>
+
+    {% if user.is_authenticated %}
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; padding-bottom: 2rem;">
+            <a href="{% url 'page_update' pagina.id %}" style="background-color: #00ffcc; color: #111; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9rem;">
+                ✏️ Editar
+            </a>
+            <a href="{% url 'page_delete' pagina.id %}" style="background-color: #ff4444; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9rem;">
+                🗑️ Borrar
+            </a>
+        </div>
+    {% endif %}
+
 </div>
 {% endblock %}

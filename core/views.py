@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Proyecto
 from django.contrib.auth.decorators import login_required
+from .forms import ProyectoForm
 
 # Importaciones necesarias para las Clases Basadas en Vista (CBV) y el Mixin de seguridad
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -44,7 +45,7 @@ def pages_index(request):
 class PageCreateView(LoginRequiredMixin, CreateView):
     model = Proyecto
     template_name = 'core/page_form.html'
-    fields = ['titulo', 'descripcion', 'imagen']
+    form_class = ProyectoForm
     success_url = reverse_lazy('pages_index')
 
     def form_valid(self, form):
@@ -56,7 +57,7 @@ class PageCreateView(LoginRequiredMixin, CreateView):
 class PageUpdateView(LoginRequiredMixin, UpdateView):
     model = Proyecto
     template_name = 'core/page_form.html'
-    fields = ['titulo', 'descripcion', 'imagen']
+    form_class = ProyectoForm
     success_url = reverse_lazy('pages_index')
 
 # CBV EXTRA: Borrado de páginas

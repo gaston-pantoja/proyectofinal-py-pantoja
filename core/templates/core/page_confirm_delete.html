@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Eliminar Publicación{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 5rem auto; padding: 2.5rem; background-color: #1a1a1a; border: 1px solid #333; border-radius: 8px; text-align: center; box-sizing: border-box;">
+    
+    <h2 style="color: #ff4444; margin-bottom: 1.5rem; font-size: 1.8rem;">⚠️ ¿Eliminar publicación?</h2>
+    
+    <p style="color: #ddd; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.5;">
+        Estás a punto de borrar definitivamente el artículo <strong>"{{ object.titulo }}"</strong>. Esta acción no se puede deshacer.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <!-- Botón de confirmación nativo de Django (POST) -->
+            <button type="submit" style="background-color: #ff4444; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.9rem;">
+                💥 Sí, Eliminar
+            </button>
+            
+            <!-- Botón de cancelación -->
+            <a href="{% url 'page_detail' object.id %}" style="background-color: #333; color: #ccc; padding: 0.7rem 1.5rem; text-decoration: none; border: 1px solid #444; border-radius: 4px; font-weight: bold; font-size: 0.9rem;">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
