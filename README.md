@@ -16,3 +16,10 @@ Aplicación web estilo Blog desarrollada en Python utilizando el framework Djang
 Para probar las funciones protegidas (Crear Blog, Mensajería y Perfil), puede utilizar la siguiente cuenta de pruebas:
 - **Usuario:** tester
 - **Contraseña:** t12345678
+
+
+## 📺 Demostración del Proyecto (Video)
+
+Podés ver el recorrido completo del sistema y la validación de control de calidad haciendo clic en el siguiente enlace:
+
+👉 [Ver Video de Demostración Técnica](https://drive.google.com/file/d/1LHkVuYoB1Yyihj0b4vfoGxbxUsQ5a3Xl/view?usp=sharing)
